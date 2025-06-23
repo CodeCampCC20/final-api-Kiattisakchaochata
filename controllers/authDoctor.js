@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken"
 export const register = async (req, res, next) => {
     try {
         console.log(req.body)
-        const { username, password} = req.body
+        const { username, password, confirmPassword, specialization } = req.body
         const user = await prisma.user.findFirst({
             where: {
                 username: username,
@@ -40,7 +40,7 @@ export const login = async (req, res, next) => {
 
             }
         })
-        console.log(user)
+        // console.log("user",user)
         if(!user) {
             createError(400, "Username or Password is invalid")
         }

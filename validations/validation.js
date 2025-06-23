@@ -1,12 +1,12 @@
 import { object, ref, Schema, string} from 'yup'
 
 export const registerSchema = object({
-    email: string().email("email ไม่ถูกต้อง").required("กรุณากรอก Email"),
+    username: string().min(5,"username ไม่ถูกต้อง").required("กรุณากรอก username"),
     password: string().min(6, "Password ต้องมากกว่า 6 อักขระ"),
     confirmPassword: string().oneOf([ref("password"), null], "Confirm password ไม่ตรงกัน")
 });
 export const loginSchema = object({
-    email: string().email("Email ไม่ถูกต้อง").required("กรุณากรอก Email"),
+    username: string().min(5, "username ไม่ถูกต้อง").required("กรุณากรอก username"),
     password: string().min(6, "Password ต้องมากกว่า 6 อักขระ"), 
 })
 export const validate = (schema) => async (req, res, next) => {
@@ -20,4 +20,4 @@ export const validate = (schema) => async (req, res, next) => {
         const mergeErr = new Error(errTxt)
         next(mergeErr)
     }
-}
+}      

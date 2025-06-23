@@ -1,43 +1,43 @@
 import prisma from "../config/prisma.js";
-export const listDoctor = async (req, res, next) => {
+export const listUser = async (req, res, next) => {
     try {
 
         console.log(req.use)
-        const doctor = await prisma.doctor.findMany({
+        const user = await prisma.user.findMany({
         })
-        console.log(doctor)
+        console.log(user)
         res.json({
-            message: "This is List All Doctor",
-            result: doctor
+            message: "This is List All User",
+            result: user
         })
     } catch (error) {
         next(error)
     }
 }
-export const readDoctor = async (req, res, next) => {
+export const readUser = async (req, res, next) => {
     try {
         res.json({ message: "This is Read Use" })
     } catch (error) {
         next(error)
     }
 }
-export const createDoctor = async (req, res, next) => {
+export const createUser = async (req, res, next) => {
     try {
-        res.json({message: "This is POST Doctor"})
+        res.json({message: "This is POST User"})
     } catch (error) {
         next(error)
     }
 }
-    export const getDoctor = async (req, res, next) => {
+    export const getMe = async (req, res, next) => {
         try {
             const {id} = req.user;
             console.log(id)
-            const doctor = await prisma.doctor.findFirst({
+            const user = await prisma.user.findFirst({
                 where: {
                         id: Number(id)
                 }
             })
-            res.json({result: doctor})
+            res.json({result: user})
         } catch (error) {
             next()
         }
